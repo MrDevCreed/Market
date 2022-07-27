@@ -4,10 +4,12 @@ namespace Domain
 {
     public class Review
     {
+        public Review() { }
         public Review(string text, double star, Customer customer, Product product)
         {
             this.Text = text;
             this.Star = star;
+            this.CreatedAt = DateTime.UtcNow;
             this.Customer = customer;
             this.Product = product;
         }
@@ -49,6 +51,8 @@ namespace Domain
                 _Star = value;
             }
         }
+
+        public DateTime CreatedAt { get; private set; }
 
         public virtual Customer Customer { get; private set; }
 

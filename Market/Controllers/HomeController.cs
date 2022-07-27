@@ -1,5 +1,7 @@
-﻿using Domain;
+﻿using Data.Database;
+using Domain;
 using Market.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,10 +15,12 @@ namespace Market.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<IdentityUser> _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,UserManager<IdentityUser> context)
         {
-            _logger = logger; 
+            _logger = logger;
+            this._context = context;
         }
 
         public IActionResult Index()

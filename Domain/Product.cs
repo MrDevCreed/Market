@@ -5,16 +5,21 @@ namespace Domain
 {
     public class Product
     {
+        public Product() { }
         public Product(double price,
                        string name,
                        int count,
+                       string imagePath,
+                       int garanty,
                        Seller seller,
-                       Dictionary<string, string> propertys,
+                       List<ProductPropertis> propertys,
                        Category category)
         {
             this.Price = price;
             this.Name = name;
             this.Count = count;
+            this.ImagePath = imagePath;
+            this.Garanty = garanty;
             this.Seller = seller;
             this.Propertys = propertys;
             this.Category = category;
@@ -38,13 +43,29 @@ namespace Domain
             }
         }
 
+        private string _ImagePath;
+
+        public string ImagePath
+        {
+            get { return _ImagePath; }
+            private set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException("Name Cannot be Null");
+
+                _ImagePath = value;
+            }
+        }
+
+        public int Garanty { get; private set; }
+
         public int Count { get; private set; }
 
         public virtual Seller Seller { get; private set; }
 
         public virtual List<BuyBasketProduct> BuyBasketProducts { get; private set; }
 
-        public virtual Dictionary<string, string> Propertys { get; private set; }
+        public virtual List<ProductPropertis> Propertys { get; private set; }
 
         public virtual Category Category { get; private set; }
 
@@ -67,6 +88,16 @@ namespace Domain
         public void ChangeCountProduct(int count)
         {
             this.Count = count;
+        }
+
+        public void ChangeImagePath(string imagePath)
+        {
+            this.ImagePath = imagePath;
+        }
+
+        public void ChangeGaranty(int garanty)
+        {
+            this.Garanty = garanty;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Domain
 {
     public class Category
     {
+        public Category() { }
         public Category(string name)
         {
             this.Name = name;

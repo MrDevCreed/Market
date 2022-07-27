@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace Domain
 {
     public class Seller
     {
-        public Seller(User user)
+        public Seller(string userId)
         {
-            this.User = user;
+            this.UserId = userId;
         }
 
         public int Id { get; private set; }
 
-        public virtual User User { get; private set; }
+        public string UserId { get; private set; }
 
         public virtual List<Order> Orders { get; private set; }
 
